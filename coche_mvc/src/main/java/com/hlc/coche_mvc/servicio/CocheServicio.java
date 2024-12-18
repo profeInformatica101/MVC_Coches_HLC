@@ -2,6 +2,7 @@ package com.hlc.coche_mvc.servicio;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,11 @@ public class CocheServicio {
 	public Coche nuevoCoche(Coche coche) {
 		 Coche coche_nuevo = repositorio.save(coche);
 		 return coche_nuevo;
+	}
+
+	public Coche obtenerCochePorId(Long id) {
+		Optional<Coche> coche = repositorio.findById(id);
+		return coche.get();
 	}
 
 }

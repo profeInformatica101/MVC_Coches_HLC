@@ -6,11 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hlc.coche_mvc.entidad.Coche;
 import com.hlc.coche_mvc.servicio.CocheServicio;
+
+
 
 @Controller
 @RequestMapping("/coches")
@@ -43,4 +46,10 @@ public class CocheContolador {
 		return "redirect:/coches";
 	}
 
+	@GetMapping("/editar/{id}")
+	public String editarCoche(Model model, @PathVariable Long id) {
+		Coche coche = servicio.obtenerCochePorId(id);
+		model.addAttribute("coche", coche);
+		return "coche-form";
+	}
 }
