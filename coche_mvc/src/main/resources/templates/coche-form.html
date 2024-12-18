@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>Formulario de nuevo Coche</head>
+	
+	<body>
+		<h1>Formulario Coche</h1>
+		<form th:object="${coche}" th:action="@{/coches/agregar}" method="post">
+			<input type="hidden" name="id" th:value="*{id}" />
+			Nombre: <input type="text" th:field="*{nombre}" />
+			Matricula: <input type="text" th:field="*{matricula}" />
+			Color: <input type="text" th:field="*{color}" />
+			<input type="submit" value="Guardar">
+		</form>
+		
+	</body>
+
+
+</html>

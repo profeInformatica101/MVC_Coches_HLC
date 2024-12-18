@@ -1,0 +1,17 @@
+<html>
+<head>Hola Mundo</head>
+<body>
+<h1>Coche</h1>
+
+<table >
+	<tr th:each="coche : ${coches}">
+		<td><p th:text="${coche.nombre}"></p></td>
+		<td><p th:text="${coche.color}"></p></td>
+		<td><a th:href="@{/coche/editar/{id}(id=${coche.id})}">Editar</a></td>
+		<td><a th:href="@{/coche/eliminar/{id}(id=${coche.id})}">Eliminar</a></td>
+	</tr>
+</table>
+<a th:href="@{/coches/nuevo}">Agregar Nuevo Producto</a>
+
+</body>
+</html>
