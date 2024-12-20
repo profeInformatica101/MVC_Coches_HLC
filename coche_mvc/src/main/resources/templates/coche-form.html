@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html>
-	<head>Formulario de nuevo Coche</head>
-	
-	<body>
-		<h1>Formulario Coche</h1>
-		<form th:object="${coche}" th:action="@{/coches/agregar}" method="post">
-			<input type="hidden" name="id" th:value="*{id}" />
-			Nombre: <input type="text" th:field="*{nombre}" />
-			Matricula: <input type="text" th:field="*{matricula}" />
+    <head>
+        <title>Formulario de nuevo Coche</title>
+        <!-- Aquí también podrías añadir <meta>, <link> a CSS, etc. -->
+    </head>
+    <body>
+        <h1>Formulario Coche</h1>
+        <form th:object="${coche}" th:action="@{/coches/agregar}" method="post">
+            <input type="hidden" th:field="*{id}" />
+            Nombre: <input type="text" th:field="*{nombre}" />
+            <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+
+            Matricula: <input type="text" th:field="*{matricula}" />
+			<div th:if="${#fields.hasErrors('matricula')}" th:errors="*{matricula}"></div>
+
 			Color: <input type="text" th:field="*{color}" />
-			<input type="submit" value="Guardar">
-		</form>
-		
-	</body>
-
-
+			<div th:if="${#fields.hasErrors('color')}" th:errors="*{color}"></div>
+            
+            <input type="submit" value="Guardar">
+        </form>
+    </body>
 </html>

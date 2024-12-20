@@ -1,6 +1,5 @@
 package com.hlc.coche_mvc.servicio;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,14 +16,12 @@ public class CocheServicio {
 		this.repositorio = repositorio;
 	}
 	
-	public void guardarCoche(Coche coche) {
-		repositorio.save(coche);
+	public Coche guardarCoche(Coche coche) {
+		return repositorio.save(coche);
 	}
 
 	public List<Coche> obtenerCoches() {
-		List<Coche> coches = new ArrayList<>();
-		repositorio.findAll().forEach(coches::add);
-		return coches;
+		return repositorio.findAll();
 	}
 	
 

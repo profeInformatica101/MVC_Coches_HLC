@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.hlc.coche_mvc.entidad.Coche;
 import com.hlc.coche_mvc.servicio.CocheServicio;
 
-
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/coches")
@@ -34,15 +35,18 @@ public class CocheContolador {
 	
 	@GetMapping("/nuevo")
 	public String mostrarForm(Model model) {
-		Coche coche = new Coche();
-		model.addAttribute("coche", coche);
+		model.addAttribute("coche", new Coche());
 		return "coche-form";
 	}
 	
 	@PostMapping("/agregar")
-	public String nuevoCoche(Model model, @ModelAttribute Coche coche) {
-		servicio.nuevoCoche(coche);
-			
+	public String nuevoCoche(@Valid @ModelAttribute Coche coche, BindingResult bindingResult ) {
+	
+		if(bindingResult.hasErrors()) {
+			 return "coche-form";
+		}
+		
+		servicio.nuevoCoche(coche);	
 		return "redirect:/coches";
 	}
 
